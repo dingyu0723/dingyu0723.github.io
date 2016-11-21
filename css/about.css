@@ -6,3 +6,6 @@
 	height: 200px;
 	border: 1px solid red;
 }
+.panel-main__content .navigation{
+	z-index: 1000000;
+}
