@@ -1,0 +1,318 @@
+
+html{
+	font-size: 14px;
+}
+body{
+	margin: 0;
+	width: 100%;
+	position: relative;
+}
+
+.bg{
+position: fixed;
+z-index: -1;
+		
+}
+
+header{
+	position: relative;
+	width:1050px;
+	height: 100px;
+	margin:0 auto;
+	top: 100px;
+}
+.logo{
+	float: left;
+}
+.hy{
+	margin-left: 20px;
+	margin-top: 20px;
+	float: left;
+}
+article{
+	width: 848px;
+	margin:120px auto;
+	overflow: hidden;
+	position: relative;
+
+}
+.left{
+	float: left;
+	width: 432px;
+
+}
+.visit,.administration{
+	width: 260px;
+	float: left;
+	margin-left: 5px;
+	opacity: 0.95;
+	margin-bottom: 2px;
+}
+
+.culture{
+	width: 270px;
+	float: left;
+}
+.cultures{
+	width: 260px;
+	margin-left:5px;
+}
+
+.guide,.public{
+	width: 167px;
+	float: left;
+}
+.guides{
+	width: 153px;
+	margin-left:14px;
+
+}
+
+.elec,.test{
+	width: 152px;
+	float: left;
+	opacity: 0.95;
+	margin-left: 15px;
+	margin-bottom: 3px;
+}
+.test{
+	margin-left: 10px;
+}
+
+.data,.services,.public{
+	position: relative;
+	display: block;
+	width: 152px;
+	margin-left: 3px;
+	float: left;	
+}
+.services,.public{
+	margin-top: 3px;
+}
+.publics{
+	width: 151px;
+	height: 128.5px;	
+}
+.services{
+	clear: both;
+}
+.public{
+	clear: both;
+}
+.right{
+	float: left;
+	width: 396px;
+	
+}
+
+.sina,.tencent,.wechat{
+	width: 227px;
+	height: 128.5px;
+	opacity: 0.95;
+	margin-left: 2px;
+	float: left;
+}
+.wechats{
+	width: 227px;
+}
+.tencent,.wechat{
+	margin-top:3px;
+}
+section img:hover{
+	animation: hd1 0.3s linear 0s 3 alternate;
+}
+@keyframes hd1{
+	from{
+			margin-top: -20px;
+		}
+		to{
+			margin-top: 0px;
+		}	
+}
+section .s{
+	animation: sx 0.1s linear 0s 3 alternate;
+}
+@keyframes sx{
+		from{
+			transform: scale(0.8);
+		}
+		
+		to{
+			transform: scale(1);
+		}
+}
+section .z1{
+	animation: z1 0.3s linear 0s 3 alternate;
+}
+@keyframes z1{
+		0%{
+			margin-left:11px;
+		}
+		100%{
+			margin-left: 17px;
+		}
+}
+section .z2{
+	animation: zy 0.3s linear 0s 3 alternate;
+}
+@keyframes zy{
+		0%{
+			margin-left:0px;
+		}
+		100%{
+			margin-left: 10px;
+		}
+}
+section .z3{
+	animation: z3 0.3s linear 0s 3 alternate;
+}
+@keyframes z3{
+		0%{
+			margin-left:-5px;
+		}
+		100%{
+			margin-left: 5px;
+		}
+}
+section .z4{
+	animation: z4 0.3s linear 0s 3 alternate;
+}
+@keyframes z4{
+		0%{
+			margin-left:-5px;
+		}
+		100%{
+			margin-left: 5px;
+		}
+}
+p{
+	z-index: 1;
+	position: absolute;
+	top:85px;
+	left: 630px;
+}
+.bp{
+	z-index: 1;
+	position: absolute;
+	top:85px;
+	left: 630px;
+}
+
+footer{
+	width: 100%;
+	position: absolute;
+	bottom: -85px;
+	text-align: center;
+}
+
+@media screen and (min-width: 1400px)  {
+	     .bg{width: 100%;height: 100%;}
+	}
+@media screen and (max-width: 600px)  {
+	     .bg{width: 100%;height: 100%;}
+	}
+@media screen and (max-width: 600px) {
+	
+	header{
+		width: 75%;
+		margin-left: 12.5%;
+	}
+	header img{
+		width: 100%;
+	}
+
+	.logo{
+		width: 25%;
+	clear: both;
+}
+.hy{
+	clear: both;
+	margin-top: 7px;
+	margin-left: 0px;
+	width: 50%;
+}
+	
+
+
+	article{
+		width: 75%;
+		
+		margin-left: 12.5%;
+		margin-top: 100px;
+	}
+	
+	.left{
+		width: 100%;
+		margin-bottom: 4px;
+		
+	}
+	.visit,.administration,.culture{
+	width: 62.4%;
+	height: 30%;
+	margin-left: 0.5%;
+	margin-top: 0.1%;
+	}
+	.cultures{
+		width: 100%;
+		margin-left: 0px;
+	}	
+	.elec,.guide,.test{
+	width: 36.6%;
+	height: 30%;
+	margin-left: 0.5%; 
+}
+.guides{
+	width: 100%;
+	margin-left: 0px;
+}
+.right{
+	width: 100%;
+	margin-bottom: 2px;
+	height: 50%;
+}
+
+
+	.sina,.tencent,.wechat{
+		width: 59%;
+		height: 30%;
+		margin-left: 0.5%;
+		margin-bottom: 0.1%;
+	}
+	.wechats,.publics{
+		width: 100%;
+		height: 30%;
+	}
+	.data,.services{
+		width: 39.9%;
+		margin-left: 0.5%;
+}
+.public{
+	width: 38%;
+	height: 30%;
+}
+
+	footer{
+		width: 75%;
+		margin-left: 12.5%;
+		bottom: -70px;
+	}
+	footer img{
+	width: 100%;
+}
+	html{
+		font-size: 12px;
+	}
+	section img{
+		animation: none;
+	}
+	section .s{
+		animation: none;
+	}
+	section .z{
+		animation: none;
+	}
+	section img:hover{
+		animation: none;
+	}
+	
+}
