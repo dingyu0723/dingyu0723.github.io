@@ -1,0 +1,102 @@
+<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>3D</title>
+	<style type="text/css">
+	/*eyes 代表的是景深层，我们可以理解为眼睛到3D容器的Z面
+	的距离*/
+		.eyes{
+			/*代表的是景深的距离，眼睛离容器的z面的距离*/
+			perspective: 1200px;
+			/*视觉点，代表我们眼睛所在的位置（不同角度看一个东西
+			形状也会不一样*/
+			perspective-origin: 10px -100px;
+
+		}
+		/*box是3D容器层，设置transform：3D之后，这个容器不单单
+		可以在想，X,Y上有其他的div，也可以在z轴上方向上布局其他div，而box本身在这个容器的z面的0值*/
+		.box{
+			/*设置这个div是一个3D的容器，也可以在Z轴布置东西*/
+			transform-style: preserve-3d;
+			background-color: lightgray;
+			width: 600px;
+			height: 600px;
+			position: absolute;                                                                                                                                                                                                                                                                                                    
+		}
+		.box div{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			/*top:100px;*/
+			/*left: 250px;*/
+
+		}
+		
+		.reddiv{
+			background-color: red;
+			opacity: 0.5;
+			transform: translateZ(-150px);
+			/*transform: translateZ(20px);*/
+			top: 150px;
+			left: 150px;
+		}
+		.bluediv{
+			background-color: blue;
+			transform: rotateX(-90deg);
+			/*transform: translateY(-150px);*/
+			transform-origin:0px 150px;
+          	left: 150px;
+			opacity: 0.5;
+		}
+		.greendiv{
+			background-color: green;
+			transform: rotateX(270deg);
+			transform-origin:0px 150px;
+			opacity: 0.5;
+			top: 300px;
+			left: 150px;
+		}
+		.golddiv{
+			background-color: gold;
+			transform: rotateY(270deg);
+			opacity: 0.5;
+			transform-origin:150px 0px;
+			top:150px;
+		}
+		.pinkdiv{
+			background-color: pink;
+			transform: rotateY(90deg);
+			opacity: 0.5;
+			transform-origin:150px 0px;
+			top:150px;
+			left: 300px;
+		}
+		.purplediv{
+			background-color: purple;
+			transform: translateZ(150px);
+			opacity: 0.5;
+			top:150px;
+			left: 150px;
+		}
+		.box:hover{
+			transform: rotateY(1080deg);
+			transition: 3s ease 0.1s;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="eyes">
+		<div class="box">
+			<div class="reddiv"></div>
+			<div class="bluediv"></div>	
+			<div class="greendiv"></div>
+			<div class="golddiv"></div>
+			<div class="pinkdiv"></div>
+			<div class="purplediv"></div>
+		</div>
+	</div>
+</body>
+</html>
