@@ -1,0 +1,91 @@
+.eyes{
+	perspective: 1200px;
+}
+.box{
+	transform-style: preserve-3d;
+	width: 300px;
+	height: 300px;
+	margin: 600px auto ; 
+	animation: run 2s linear infinite;    
+}
+@keyframes run{
+	from{
+				transform: rotateX(0deg) rotateY(0deg);
+			}
+			to{
+				transform: rotateX(360deg) rotateY(360deg);
+			}
+}
+.box div{
+	width: 300px;
+	height: 300px;
+	opacity: 0.5;
+	position: absolute;
+	
+	font-size: 80px;
+}
+p{	position: absolute;
+	top: 50px;
+	left: 120px;
+}
+.div1{
+	background-color: red;
+	transform: translateZ(150px);
+}
+.div2{
+	background-color: green;
+	transform: rotateX(-90deg) translateZ(150px);
+	transform-origin: 0px 150px;
+	
+}
+.div3{
+	background-color: blue;
+	transform: rotateX(90deg) translateZ(150px);
+	transform-origin: 0px 150px;
+ 
+}
+.div4{
+	background-color: gold;
+	transform: rotateY(-90deg) translateZ(150px);
+	transform-origin: 150px 0px;
+	
+}
+.div5{
+	background-color: purple;
+	transform: rotateY(90deg) translateZ(150px);
+	transform-origin: 150px 0px;
+	 
+}
+.div6{
+	background-color: orange;
+	transform: translateZ(-150px);
+	
+}
+.div7{
+	background: black;
+	
+}
+.box:hover .div1{
+			transform:translateZ(250px) scale(1.2,1.2);
+			transition: 1s linear; 
+		}
+.box:hover .div6{
+			transform:translateZ(-250px) scale(1.2,1.2); 
+			transition: 1s linear; 
+		}
+.box:hover .div2{
+			transform:rotateX(-90deg) translateZ(250px) scale(1.2,1.2);
+			transition: 1s linear; 
+		}
+.box:hover .div3{
+			transform:rotateX(90deg) translateZ(250px) scale(1.2,1.2);
+			transition: 1s linear; 
+		}
+.box:hover .div4{
+			transform:rotateY(-90deg) translateZ(250px) scale(1.2,1.2);
+			transition: 1s linear; 
+		}		
+.box:hover .div5{
+			transform:rotateY(90deg) translateZ(250px) scale(1.2,1.2);
+			transition: 1s linear; 
+		}	
