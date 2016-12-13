@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas{
+            display: block;
+            margin: 0 auto;
+            border: 1px solid gold;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<canvas width="800" height="600" id="canvas">
+    请使用更高版本的浏览器
+</canvas>
+<script>
+    var cs = document.querySelector("#canvas");
+    cs.width = 800;
+    cs.height = 600;
+    var ctx = cs.getContext("2d");
+
+    var speedX = 3;
+    var speedY = 3;
+    var x = 300;
+    var y = 100;
+    var r = 50;
+    function drawArc(color,x,y,r){
+        ctx.save();
+        ctx.clearRect(0,0,800,600)
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.arc(x,y,r,0,Math.PI*2)
+        ctx.clip();
+        ctx.fill();
+        ctx.font="100px 微软雅黑";
+        ctx.strokeText("hello world",60,100);
+        ctx.strokeText("hello world",60,300);
+        ctx.strokeText("hello world",60,500);
+        ctx.closePath();
+        ctx.restore()
+    }
+
+    function move(){
+        if (r>150){
+            speedX=-speedX;
+        }if(r<10){
+            speedX=-speedX
+        }
+        if(x+speedX+r > cs.width || x+speedX-r < 0){
+            speedX = -speedX;
+        }
+        if(y+speedY+r > cs.height || y+speedY-r < 0){
+            speedY = -speedY;
+        }
+
+        r += speedX;
+        x += speedX;
+        y += speedY;
+
+        drawArc("yellow",x,y,r);
+        window.requestAnimationFrame(move);
+
+    }
+    move();
+
+
+</script>
+</body>
+</html>

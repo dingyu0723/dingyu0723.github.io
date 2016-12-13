@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .fangda{
+            height:400px;
+            width:400px;
+            position: relative;
+        }
+        .small{
+            width:400px;
+            height:400px;
+            overflow: hidden;
+            border:1px #000 solid;
+            position: relative;
+            cursor: move;
+        }
+        .pointer{
+            width:150px;
+            height:150px;
+            background:rgba(0,0,255,0.3);
+            position: absolute;
+            left:0;
+            top:0;
+            display: none;
+        }
+        img{
+            border:none;
+            border:0;
+        }
+        a img{
+            border:none;
+        }
+        .small img{
+            width:400px;
+            height:400px;
+            float:left;
+        }
+
+        .big{
+            width:400px;
+            height:400px;
+            border:1px #000 solid;
+            position: absolute;
+            left:412px;
+            top:0;
+            overflow: hidden;
+        }
+        .big img{
+            width:800px;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div class="fangda">
+    <div class="small">
+        <img src="https://img.alicdn.com/imgextra/i2/1043759434/TB2e91RiXXXXXa3XpXXXXXXXXXX_!!1043759404.jpg_400x400q90.jpg" alt=""/>
+        <span class="pointer"></span>
+    </div>
+    <div class="big">
+        <img src="https://img.alicdn.com/imgextra/i2/1043759434/TB2e91RiXXXXXa3XpXXXXXXXXXX_!!1043759404.jpg_800x800q90.jpg" alt=""/>
+    </div>
+</div>
+</body>
+<script>
+    window.onload = function(){
+        var small = document.querySelector(".small");
+        var pointer = document.querySelector(".pointer");
+        var big = document.querySelector(".big");
+        var bigImg = document.querySelector(".big img");
+        small.onmouseover = function(){
+            pointer.style.display = "block";
+            big.style.display = "block";
+        }
+        small.onmouseout = function(){
+            pointer.style.display = "none";
+            big.style.display = "none";
+        }
+        small.onmousemove = function(event){
+            var oEvent = event || window.event;
+            var x = oEvent.clientX;
+            var y = oEvent.clientY;
+            var l = x - pointer.offsetWidth/2;
+            var t = y - pointer.offsetHeight/2;
+            if(x <= pointer.offsetWidth/2){
+                l = 0;
+            }else if(x >= small.offsetWidth - pointer.offsetWidth/2){
+                l = small.offsetWidth - pointer.offsetWidth;
+            }
+            if(y <= pointer.offsetHeight/2){
+                t = 0;
+            }else if(y >= small.offsetHeight - pointer.offsetHeight/2){
+                t = small.offsetHeight - pointer.offsetHeight;
+            }
+            pointer.style.left = l + "px";
+            pointer.style.top = t + "px";
+            var xishuX = l/(small.offsetWidth - pointer.offsetWidth);
+            var xishuY = t/(small.offsetHeight - pointer.offsetHeight);
+            bigImg.style.left = -xishuX*(bigImg.offsetWidth - big.offsetWidth) + "px";
+            bigImg.style.top = -xishuY*(bigImg.offsetHeight - big.offsetHeight) + "px";
+
+
+        }
+
+    }
+</script>
+</html>

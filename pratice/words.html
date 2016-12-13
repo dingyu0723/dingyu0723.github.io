@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width: 600px;
+            min-height: 300px;
+            border: 1px red solid;
+            margin: 50px auto 0;
+        }
+        [type="text"]{
+            border: 1px #000 solid;
+            border-radius: 20px;
+            height: 40px;
+            font-size: 24px;
+            width: 400px;
+        }
+        [type="button"]{
+            border: 1px #000 solid;
+            border-radius: 20px;
+            height: 60px;
+            font-size: 24px;
+            width: 120px;
+        }
+        ul li{
+            height: 40px;
+            line-height: 40px;
+            padding-left: 10px;
+            border-bottom: 1px dashed red;
+            font-size: 24px;
+        }
+        ul li:nth-child(odd){
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <input type="text" placeholder="留言"/>
+    <input type="button" value="提交"/>
+    <ul class="list">
+
+    </ul>
+</div>
+<script>
+    var Ul = document.querySelector(".list");
+
+    var btn = Ul.previousElementSibling;
+    btn.onclick = function(){
+        var text = this.previousElementSibling.value;
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href="#";
+        var date = new Date();
+        a.innerText = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+        li.innerText = text;
+        li.appendChild(a);
+        var first = Ul.firstChild;
+        Ul.insertBefore(li,first);
+    }
+</script>
+</body>
+</html>

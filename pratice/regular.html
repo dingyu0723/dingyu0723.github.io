@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>敏感字替换</title>
+</head>
+<body>
+转换前：<textarea id="tex1"></textarea>
+<input type="button" value="转换">
+转换后：<textarea id="tex2"></textarea>
+</body>
+<script type="text/javascript">
+    var tex1=document.querySelector("#tex1");
+    var tex2=document.querySelector("#tex2");
+    var btn=document.querySelector("[type=button]");
+    btn.onclick=function(){
+        var re=/你|我|他/g;
+        tex2.value=tex1.value.replace(re,'ta');
+    }
+</script>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时钟</title>
+    <style type="text/css">
+        .clock{
+            width: 645px;
+            height: 645px;
+            position: relative;
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 14px solid skyblue;
+        }
+        img{
+            position: relative;
+            /*top: 2px;
+            left: 3px;*/
+        }
+
+        img:nth-child(1){
+            position: absolute;
+            top: 3px;
+            left: 2px;
+        }
+        img:nth-child(2){
+            position: absolute;
+            left: 13px;
+            top: 18px;
+        }
+        img:nth-child(3){
+            position: absolute;
+            left:69px;
+            top:65px;
+        }
+        img:nth-child(4){
+            position: absolute;
+            left:301px;
+            top:308px;
+            z-index: 10;
+        }
+        img:nth-child(5){
+            position: absolute;
+            left:129px;
+            top:292px;
+            transform: rotate(-250deg);
+            transform-origin: 72% 31%;
+        }
+        img:nth-child(6){
+            position: absolute;
+            left:260px;
+            top:268px;
+            transform: rotate(-134deg);
+            transform-origin: 22% 22%;
+        }
+        img:nth-child(7){
+            position: absolute;
+            left:294px;
+            top:71px;
+            transform: rotate(-24deg);
+            transform-origin: 20% 80%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="clock">
+    <img src="a2.png" alt="" class="">
+    <img src="a3.png" alt="" class="">
+    <img src="a4.png" alt="">
+    <img src="point.png" alt="">
+    <img src="shizhen.png" alt="" class="hour">
+    <img src="fenzhen.png" alt="" class="minute">
+    <img src="maizhen.png" alt="" class="second">
+</div>
+<script type="text/javascript">
+    var ts=null;
+    var miao=document.querySelector(".second");
+    var fen=document.querySelector(".minute");
+    var shi=document.querySelector(".hour");
+
+    ts=setInterval(shiZhong,1000);
+    function shiZhong() {
+        var riQi=new Date();
+        var imgs=document.querySelectorAll("img");
+        var seconds=riQi.getSeconds();
+        var minutes=riQi.getMinutes();
+        var hours=riQi.getHours();
+        miao.style.transform='rotate(' + (seconds*6 -18)+'deg)';
+        fen.style.transform='rotate(' + (minutes*6-135)+'deg)';
+        shi.style.transform = 'rotate(' + (hours*30-250 + Math.floor((minutes / 12) * 6)) + 'deg)';
+    }
+</script>
+</body>
+</html>

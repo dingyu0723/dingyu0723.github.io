@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,ol{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+
+        .tab{
+            width: 520px;
+            height: 280px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .btn{
+            width: 50px;
+            height: 70px;
+            background: #000;
+            color: #fff;
+            line-height: 70px;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -35px;
+            cursor: pointer;
+            opacity: 0.3;
+        }
+        .right{
+            left: auto;
+            right: 0;
+        }
+        .pic{
+            height: 280px;
+            position: relative;
+        }
+        .pic li{
+            position: absolute;
+            width: 520px;
+            height: 280px;
+            left: 0;
+            top: 0;
+            transition: 1s;
+            opacity: 0;
+        }
+        .pic .active{
+            opacity: 1;
+        }
+        .btns{
+            position: absolute;
+            width: 200px;
+            height: 30px;
+            left: 50%;
+            margin-left: -100px;
+            bottom: 20px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+        .btns li{
+            width: 28px;
+            height: 28px;
+            background: #999;
+            border-radius: 50%;
+            margin-left: 15px;
+            float: left;
+            cursor: pointer;
+        }
+        .btns .active{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="tab">
+    <ol class="pic">
+        <li class="active">
+            <a href="#">
+                <img src="https://img.alicdn.com/tps/TB1jQuQLpXXXXcTXpXXXXXXXXXX-520-280.jpg" alt=""/>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="https://ossgw.alicdn.com/creatives-assets/screenshots/creations/2016/03/23/56f20ed0cc644ac37f6d87e2-1aegojnsg.jpg" alt=""/>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="https://aecpm.alicdn.com/simba/img/TB1JRyKLXXXXXcJXXXXSutbFXXX.jpg" alt=""/>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <img src="https://aecpm.alicdn.com/simba/img/TB1aFXtKVXXXXXHXFXXSutbFXXX.jpg" alt=""/>
+            </a>
+        </li>
+    </ol>
+    <ul class="btns">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <span class="btn left">&lt;</span>
+    <span class="btn right">&gt;</span>
+</div>
+</body>
+<script type="text/javascript">
+    var prev = document.querySelector(".left");
+    var next = document.querySelector(".right");
+    var btns = document.querySelectorAll(".btns li");
+    var pics = document.querySelectorAll(".pic li");
+    var length = btns.length;
+    // var link = document.querySelector("a");
+    var index = 0;
+    var timer = null;
+    // this 关键字
+    // 在事件中，this指向触发事件的元素对象
+    for(var i = 0;i<btns.length;i++){
+        btns[i].index = i;
+        btns[i].innerHTML=i+1;
+        btns[i].onmouseover = function(){
+            clearInterval(timer);
+            for(var i = 0;i<btns.length;i++){
+                btns[i].className = "";
+                pics[i].className = "";
+            }
+            index = this.index;
+            btns[this.index].className="active";
+            pics[this.index].className="active";
+        }
+        btns[i].onmouseout = function(){
+            timer=setInterval(xiaYiGe,3000)
+        }
+    }
+
+    // 鼠标放上去清除计时器
+    next.onmouseover=function(){
+        clearInterval(timer);
+    }
+    // 移开鼠标开始计时
+    next.onmouseout=function(){
+        timer = setInterval(xiaYiGe,3000);
+    }
+    // 点击执行函数向下一个播放
+    next.onclick=function(){
+        xiaYiGe();
+    }
+    prev.onmouseover=function(){
+        clearInterval(timer);
+    }
+    prev.onmouseout=function(){
+        timer = setInterval(xiaYiGe,3000);
+    }
+    prev.onclick=function(){
+        shangYiGe();
+    }
+
+
+
+    function shangYiGe(){
+        clearInterval(timer);
+        index --;
+        if(index < 0){
+            index = btns.length-1;
+        }
+        for(var i = 0;i<btns.length;i++){
+            btns[i].className = "";
+            pics[i].className = "";
+        }
+        btns[index].className="active";
+        pics[index].className="active";
+    }
+
+
+    function xiaYiGe(){
+        index ++;
+        if(index > btns.length-1){
+            index = 0;
+        }
+        for(var i = 0;i<btns.length;i++){
+            btns[i].className = "";
+            pics[i].className = "";
+        }
+        btns[index].className="active";
+        pics[index].className="active";
+    }
+    timer = setInterval(xiaYiGe,3000);
+</script>
+</html>

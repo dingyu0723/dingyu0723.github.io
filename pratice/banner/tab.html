@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul,ol{
+            list-style: none;
+        }
+        ul li{
+            font-size: 80px;
+            text-align: center;
+        }
+        #slide{
+            width: 800px;
+            height: 500px;
+            margin: 20px auto;
+            box-shadow: 0px 0px 8px blue;
+        }
+        .btnbox1{
+            position: absolute;
+            bottom:10px;
+            left:50%;
+        }
+        .btns1{
+            float:left;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="slide"></div>
+</body>
+<script>
+    function Tab(parame){
+        this.parame=parame;
+        var H=$one(this.parame.wrap).clientHeight //获取容器高度
+        var W=$one(this.parame.wrap).clientWidth //获取容器宽度
+        var length=this.parame.count;
+        var time=this.parame.time;
+        var arr=this.parame.arr;
+        this.init=function () {
+            this.content();
+            if(this.parame.type=="show"){
+               this.show();     //基本
+            }
+            if(this.parame.type=="fade"){
+                this.fade();    //渐变
+            }
+            if(this.parame.type=="slide"){
+                this.slide();   //左右
+            }
+            if(this.parame.type=="upslide"){
+                this.upslide();   //上下
+            }
+
+        }
+        this.content=function () {
+            var box=$one(this.parame.wrap);
+            var pic="<ul>";
+            var btn="<ol>";
+            for(var i=0;i<this.parame.count;i++){
+                pic+="<li><img src='images/"+arr[i]+"' alt=''></li>";
+                console.log(pic)
+                if(this.parame.pageCount){
+                    btn+="<li>"+(i+1)+"</li>";
+                }
+                else{
+                    btn+="<li></li>";
+                }
+
+            }
+            pic+="</ul>";
+            btn+="</ol>";
+            box.innerHTML=pic+btn;
+            var img=$some("img");
+            for(var i=0;i<this.parame.count;i++){
+                img[i].style.width=W+"px";
+                img[i].style.height=H+"px";
+            }
+        }
+        //基本
+        this.show=function () {
+           var pics=$some("ul li");
+            var btns=$some("ol li");
+            var box=$one(this.parame.wrap);
+            var btnbox=$one("ol")
+            var picbox=$one("ul")
+            picbox.style.height=H+"px";
+            box.style.position="relative";
+            btnbox.className="btnbox1";
+            btnbox.style.marginLeft=-length*30/2+"px";
+            for(var j=0;j<length;j++){
+                pics[j].style.display="none";
+                pics[j].style.height=H+"px";
+                pics[j].style.lineHeight=H+"px";
+                btns[j].style.background="lightgray";
+                btns[j].className="btns1"
+            }
+            pics[0].style.display="block";
+            btns[0].style.background="red";
+            var now=0;
+            for(var j=0;j<this.parame.count;j++){
+                btns[j].index=j;
+                btns[j].onclick=function () {
+                    for(var j=0;j<length;j++){
+                        pics[j].style.display="none";
+                        btns[j].style.background="lightgray";
+                    }
+                    now=this.index;
+                    pics[this.index].style.display="block";
+                    btns[this.index].style.background="red";
+                    clearInterval(timer)
+                    timer=setInterval(next,time)
+                }
+            }
+            //定时器
+                var timer=null;
+                function next() {
+                    now++;
+                    if(now>length-1){
+                        now=0;
+                    }
+                    for(var i=0;i<length;i++){
+                        btns[i].style.background="lightgray";
+                        pics[i].style.display="none";
+                    }
+                    btns[now].style.background="red";
+                    pics[now].style.display="block";
+                }
+                timer=setInterval(next,time)
+        }
+
+        //渐变
+        this.fade=function (){
+            var pics=$some("ul li");
+            var btns=$some("ol li");
+            var box=$one(this.parame.wrap);
+            var btnbox=$one("ol")
+            var picbox=$one("ul")
+            picbox.style.height=H+"px";
+            box.style.position="relative";
+            btnbox.className="btnbox1";
+            btnbox.style.marginLeft=-length*30/2+"px";
+            for(var j=0;j<length;j++){
+                pics[j].style.opacity=0;
+                pics[j].style.position="absolute";
+                pics[j].style.width="100%";
+                pics[j].style.height=H+"px";
+                pics[j].style.lineHeight=H+"px";
+                pics[j].style.transition="1s";
+                btns[j].style.background="lightgray";
+                btns[j].className="btns1"
+
+            }
+            pics[0].style.opacity=1;
+            btns[0].style.background="red";
+            var now=0;
+            for(var j=0;j<this.parame.count;j++){
+                btns[j].index=j;
+                btns[j].onclick=function () {
+                    for(var j=0;j<length;j++){
+                        pics[j].style.opacity=0;
+                        btns[j].style.background="lightgray";
+                    }
+                    now=this.index;
+                    pics[this.index].style.opacity=1;
+                    btns[this.index].style.background="red";
+                    clearInterval(timer)
+                    timer=setInterval(next,time)
+                }
+            }
+                //定时器
+                var timer=null;
+                function next() {
+                    now++;
+                    if(now>length-1){
+                        now=0;
+                    }
+                    for(var i=0;i<length;i++){
+                        btns[i].style.background="lightgray";
+                        pics[i].style.opacity=0;
+                    }
+                    btns[now].style.background="red";
+                    pics[now].style.opacity=1;
+                }
+                timer=setInterval(next,time)
+        }
+        //左右
+        this.slide=function(){
+            var pics=$some("ul li");
+            var btns=$some("ol li");
+            var box=$one(this.parame.wrap);
+            var btnbox=$one("ol")
+            var picbox=$one("ul")
+            box.style.overflow="hidden"
+            picbox.style.left="0"
+            picbox.style.transition="1s";
+            picbox.style.height=H+"px";
+            picbox.style.width=W*length+"px";
+            picbox.style.position="relative";
+            box.style.position="relative";
+            btnbox.className="btnbox1";
+            btnbox.style.marginLeft=-length*30/2+"px";
+            for(var j=0;j<length;j++){
+                pics[j].style.width=W+"px";
+                pics[j].style.height=H+"px";
+                pics[j].style.lineHeight=H+"px";
+                pics[j].style.float="left";
+                btns[j].style.background="lightgray";
+                btns[j].className="btns1"
+
+            }
+            var now=0;
+            btns[0].style.background="red";
+            for(var j=0;j<this.parame.count;j++){
+                btns[j].index=j;
+                btns[j].onclick=function () {
+                    for(var j=0;j<length;j++){
+                        btns[j].style.background="lightgray";
+                    }
+                    now=this.index;
+                    picbox.style.left=-W*this.index+"px";
+                    btns[this.index].style.background="red";
+                    clearInterval(timer)
+                    timer=setInterval(next,time)
+                }
+            }
+                //定时器
+                var timer=null;
+                function next() {
+                    now++;
+                    if(now>length-1){
+                        now=0;
+                    }
+                    for(var i=0;i<length;i++){
+                        btns[i].style.background="lightgray";
+                    }
+                    btns[now].style.background="red";
+                    picbox.style.left=-W*now+"px";
+                }
+                timer=setInterval(next,time)
+        }
+        //上下
+        this.upslide=function () {
+            var pics=$some("ul li");
+            var btns=$some("ol li");
+            var box=$one(this.parame.wrap);
+            var btnbox=$one("ol")
+            var picbox=$one("ul")
+            box.style.overflow="hidden"
+            picbox.style.top="0"
+            picbox.style.transition="1s";
+            picbox.style.height=H+"px";
+            picbox.style.width=W*length+"px";
+            picbox.style.position="relative";
+            box.style.position="relative";
+            btnbox.className="btnbox1";
+            btnbox.style.marginLeft=-length*30/2+"px";
+            for(var j=0;j<length;j++){
+                pics[j].style.width=W+"px";
+                pics[j].style.height=H+"px";
+                pics[j].style.lineHeight=H+"px";
+                btns[j].style.background="lightgray";
+                btns[j].className="btns1"
+
+            }
+            btns[0].style.background="red";
+            var now=0;
+            for(var j=0;j<this.parame.count;j++){
+                btns[j].index=j;
+                btns[j].onclick=function () {
+                    for(var j=0;j<length;j++){
+                        btns[j].style.background="lightgray";
+                    }
+                    now=this.index;
+                    picbox.style.top=-H*this.index+"px";
+                    btns[this.index].style.background="red";
+                    clearInterval(timer)
+                    timer=setInterval(next,time)
+                }
+            }
+                //定时器
+                var timer=null;
+                function next() {
+                    now++;
+                    if(now>length-1){
+                        now=0;
+                    }
+                    for(var i=0;i<length;i++){
+                        btns[i].style.background="lightgray";
+                    }
+                    btns[now].style.background="red";
+                    picbox.style.top=-H*now+"px";
+                }
+                timer=setInterval(next,time)
+        }
+
+        function $one(x){
+            return document.querySelector(x);
+        }
+        function $some(x) {
+            return document.querySelectorAll(x)
+        }
+    }
+
+
+    var tab=new Tab({
+        wrap:"#slide",         //容器名称id或class
+        count:3,               //图片和按键个数
+        type:"slide",         //轮播图样式 show基本 fade渐变 slide左右 upslide上下
+        pageCount:true,       //按键是否要数字true有数字
+        arr:["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg"],   //img下图片名称
+        time:2000             //延迟时间(毫秒)
+    });
+    tab.init();
+
+
+
+
+
+</script>
+</html>
